@@ -53,7 +53,8 @@ class MessageHandler():
                 dict_msgs = []
                 raw_msgs = msgs[0]
                 message = raw_msgs.get_data()
-                await raw_msgs.ack()
+                for msg in msgs:
+                    await msg.ack()
             
                 dict_msg = json.loads(message.decode('utf-8'))
                 for m in dict_msg['results']:
